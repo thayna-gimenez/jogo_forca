@@ -1,4 +1,3 @@
-processador
-paralelismo
-maluquice
-moluscos
+desenvolvimento
+manutencao
+computador
