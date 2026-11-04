@@ -1,0 +1,9 @@
+[tool.mutmut]
+source_paths = ["."]
+only_mutate = [
+    "jogo.py",
+    "palavra.py",
+    "forca.py",
+    "fases.py"
+]
+pytest_add_cli_args_test_selection = ["tests/"]
