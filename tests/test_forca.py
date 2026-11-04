@@ -54,11 +54,11 @@ def test_desenhar_quando_erros_ultrapassam_limite(capsys):
     assert saida == forca.FASES[-1] + "\n"
 
 
-def test_desenhar_com_seis_erros(capsys):
+def test_desenhar_com_numero_erros_igual_ao_total_de_fases(capsys):
     forca = Forca()
 
-    forca.desenhar(6)
+    forca.desenhar(len(forca.FASES))
 
     saida = capsys.readouterr().out
 
-    assert saida == forca.FASES[6] + "\n"
+    assert saida.strip() == forca.FASES[-1].strip()

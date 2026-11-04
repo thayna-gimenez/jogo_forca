@@ -18,9 +18,10 @@ def test_inicializar_fases():
 
 def test_mostrar_tela_inicial_com_nivel_facil(capsys, monkeypatch):
     fases = Fases()
+    prompts = []
 
     def entrada_falsa(prompt):
-        print(prompt, end="")
+        prompts.append(prompt)
         return "1"
 
     monkeypatch.setattr("builtins.input", entrada_falsa)
@@ -31,8 +32,10 @@ def test_mostrar_tela_inicial_com_nivel_facil(capsys, monkeypatch):
 
     assert fases.nivel == 1
     assert "Jogo da Forca" in saida
-    assert "Escolha o nível de dificuldade" in saida
-
+    assert saida.count("=" * fases.LARGURA_TITULO) == 2
+    assert prompts == [
+     "Escolha o nível de dificuldade (1 - Fácil, 2 - Médio, 3 - Difícil): "
+    ]
 
 def test_mostrar_tela_inicial_com_nivel_medio(monkeypatch):
     fases = Fases()
@@ -124,8 +127,10 @@ def test_obter_arquivo_palavras_com_nivel_invalido():
     fases = Fases()
     fases.nivel = 4
 
-    with pytest.raises(ValueError, match="Nível inválido."):
+    with pytest.raises(ValueError) as erro:
         fases.obter_arquivo_palavras()
+
+    assert str(erro.value) == "Nível inválido."
 
 
 def test_obter_arquivo_palavras_sem_nivel_selecionado():
