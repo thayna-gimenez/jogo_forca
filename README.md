@@ -37,8 +37,6 @@ Caso o sistema do usuário seja Windows, é necessário executar o código em am
 
 ## Instalação e execução
 
-O código deve ser executado pelo usuário root dentro da pasta "jogo_forca".
-
 Primeiramente, crie um ambiente virtual.
 ```
 python3 -m venv .venv
